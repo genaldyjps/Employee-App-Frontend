@@ -1,0 +1,38 @@
+<div mat-dialog-content>
+  <h3 style='font-family: Roboto,"Helvetica Neue",sans-serif;'>Employee Details</h3>
+  <form class="form-container" [formGroup]="employeeForm">
+    <mat-form-field>
+      <input matInput placeholder="Username" formControlName="username">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="First Name" formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Last Name" formControlName="lastName">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Email" formControlName="email">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="date" placeholder="Birth Date" formControlName="birthDate">
+      <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+      <mat-datepicker #date></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <span matPrefix>Rp. &nbsp;</span>
+      <input matInput placeholder="Basic Salary" [value]="employeeForm.get('basicSalary').value | number:'.2'" formControlName="basicSalary">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Status" formControlName="status">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Group" formControlName="group">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Description" formControlName="description">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">OK</button>
+</div>

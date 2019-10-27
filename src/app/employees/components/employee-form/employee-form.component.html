@@ -1,0 +1,53 @@
+<mat-card>
+  <h3>Create Employee</h3>
+  <form class="form-container" [formGroup]="employeeForm" novalidate (ngSubmit)="onSubmit()">
+    <div class="form-container">
+      <mat-form-field>
+        <input matInput placeholder="Username" formControlName="username">
+        <mat-error *ngIf="employeeForm.controls.username.invalid && employeeForm.controls.username.touched">Username is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="First Name" formControlName="firstName">
+        <mat-error *ngIf="employeeForm.controls.firstName.invalid && employeeForm.controls.firstName.touched">First Name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Last Name" formControlName="lastName">
+        <mat-error *ngIf="employeeForm.controls.lastName.invalid && employeeForm.controls.lastName.touched">Last Name is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Email" formControlName="email">
+        <mat-error *ngIf="employeeForm.controls.email.invalid && employeeForm.controls.email.touched">Email is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [max]="maxDate" [matDatepicker]="date" placeholder="Birth Date" formControlName="birthDate">
+        <mat-datepicker-toggle matSuffix [for]="date"></mat-datepicker-toggle>
+        <mat-datepicker #date></mat-datepicker>
+        <mat-error *ngIf="employeeForm.controls.birthDate.invalid && employeeForm.controls.birthDate.touched">Birth Date is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Basic Salary" type="number" formControlName="basicSalary">
+        <mat-error *ngIf="employeeForm.controls.basicSalary.invalid && employeeForm.controls.basicSalary.touched">Basic Salary is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Status" formControlName="status">
+        <mat-error *ngIf="employeeForm.controls.status.invalid && employeeForm.controls.status.touched">Status is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Group" formControlName="group">
+          <mat-option value="IT">IT</mat-option>
+          <mat-option value="HR">HR</mat-option>
+          <mat-option value="BI">BI</mat-option>
+        </mat-select>
+        <mat-error *ngIf="employeeForm.controls.group.invalid && employeeForm.controls.group.touched">Group is required</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Description" formControlName="description">
+        <mat-error *ngIf="employeeForm.controls.description.invalid && employeeForm.controls.description.touched">Description is required</mat-error>
+      </mat-form-field>
+      <div>
+        <button mat-raised-button [disabled]="!employeeForm.valid" type="submit" color="primary">Save</button>
+        <button mat-raised-button type="button" (click)="listBtnHandler()">Cancel</button>
+      </div>
+    </div>
+  </form>
+</mat-card>

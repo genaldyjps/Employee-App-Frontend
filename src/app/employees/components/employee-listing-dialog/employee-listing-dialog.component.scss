@@ -1,0 +1,17 @@
+.form-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+.form-container > * {
+    width: 100%;
+}
+
+.mat-dialog-actions { 
+    display: flex; 
+    justify-content: center; 
+}
+
+.mat-input-element:disabled {
+    color: rgb(0, 0, 0);
+}

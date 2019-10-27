@@ -1,0 +1,90 @@
+<mat-toolbar>
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+  </mat-form-field>
+  <div class="menu-bar">
+    <button mat-button (click)="createBtnHandler()">
+      New Employee
+    </button>
+  </div>
+</mat-toolbar>
+<div class="table-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource" matSort>
+
+    <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+
+    <ng-container matColumnDef="username">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Username </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.username}} </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.firstName}} </mat-cell>
+      </ng-container> -->
+
+    <!-- <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Last Name </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.lastName}} </mat-cell>
+      </ng-container> -->
+
+    <!-- <ng-container matColumnDef="email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.email}} </mat-cell>
+    </ng-container> -->
+
+    <ng-container matColumnDef="birthDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Birth Date </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.birthDate | date}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="basicSalary">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Basic Salary </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.basicSalary}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.status}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="group">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Group </mat-header-cell>
+      <mat-cell *matCellDef="let employee"> {{employee.group}} </mat-cell>
+    </ng-container>
+
+    <!-- <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell *matCellDef="let employee"> {{employee.description}} </mat-cell>
+      </ng-container> -->
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let employee">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="viewBtnHandler(employee)">
+            <mat-icon>pageview</mat-icon>
+            <span>View</span>
+          </button>
+          <button mat-menu-item (click)="editBtnHandler(employee._id)">
+            <mat-icon>edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="deleteBtnHandler(employee._id)">
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <mat-paginator #paginator [length]="resultsLength" [showFirstLastButtons]="true" [pageSize]="10" [pageSizeOptions]="[5, 10, 20]">
+  </mat-paginator>
+</div>
